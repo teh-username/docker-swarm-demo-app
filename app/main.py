@@ -1,5 +1,4 @@
 import os
-import subprocess
 import redis
 from flask import Flask
 app = Flask(__name__)
@@ -12,14 +11,12 @@ def hello():
         port=6379,
         db=0
     )
-    result = subprocess.run(['hostname', '-i'], stdout=subprocess.PIPE)
-    ip = result.stdout.decode('utf-8')
     counter = r.get('visit_counter')
     if counter is None:
         r.set('visit_counter', 1)
         counter = 1
     r.incr('visit_counter')
-    return "Hello human # {} from IP: {}".format(int(counter), ip)
+    return "Hello human # {}".format(int(counter))
 
 
 @app.route("/ping")
