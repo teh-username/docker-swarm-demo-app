@@ -10,10 +10,12 @@ services:
     ports:
       - "5000:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "curl", "-f", "http://localhost/ping"]
       interval: 1s
       timeout: 2s
       retries: 3
+    deploy:
+      replicas: 2
   redis:
     image: redis:3.2-alpine
     volumes:
