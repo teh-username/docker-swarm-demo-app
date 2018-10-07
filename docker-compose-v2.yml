@@ -14,8 +14,6 @@ services:
       interval: 1s
       timeout: 2s
       retries: 3
-    deploy:
-      replicas: 2
   redis:
     image: redis:3.2-alpine
     volumes:
